@@ -12,24 +12,24 @@ const h1Styles: React.CSSProperties = {
 };
 
 function Heading() {
-  const currentFrame = useCurrentFrame();
   const { durationInFrames, fps } = useVideoConfig();
+  const currentFrame = useCurrentFrame() % durationInFrames;
 
   const shouldInhale =
     currentFrame < durationInFrames / 2 - 60 ||
     currentFrame > durationInFrames - 60;
 
-  const frameFadeThreshhold = fps * 0.3;
+  const fadeThreshhold = fps * 0.3;
   const holdOpacity = interpolate(
     currentFrame,
     [
       durationInFrames / 4,
-      durationInFrames / 4 + frameFadeThreshhold,
-      durationInFrames / 2 - frameFadeThreshhold,
+      durationInFrames / 4 + fadeThreshhold,
+      durationInFrames / 2 - fadeThreshhold,
       durationInFrames / 2,
       durationInFrames * 0.75,
-      durationInFrames * 0.75 + frameFadeThreshhold,
-      durationInFrames - frameFadeThreshhold,
+      durationInFrames * 0.75 + fadeThreshhold,
+      durationInFrames - fadeThreshhold,
       durationInFrames,
     ],
     [0, 1, 1, 0, 0, 1, 1, 0]
@@ -39,12 +39,12 @@ function Heading() {
     currentFrame,
     [
       0,
-      frameFadeThreshhold,
-      durationInFrames / 4 - frameFadeThreshhold,
+      fadeThreshhold,
+      durationInFrames / 4 - fadeThreshhold,
       durationInFrames / 4,
       durationInFrames / 2,
-      durationInFrames / 2 + frameFadeThreshhold,
-      durationInFrames * 0.75 - frameFadeThreshhold,
+      durationInFrames / 2 + fadeThreshhold,
+      durationInFrames * 0.75 - fadeThreshhold,
       durationInFrames * 0.75,
     ],
     [0, 1, 1, 0, 0, 1, 1, 0]

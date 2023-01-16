@@ -5,19 +5,16 @@ import {
   interpolate,
   SpringConfig,
 } from "remotion";
+
 import Circle from "./Circle";
 import styles from "./styles";
 
 export const InnerCircle = () => {
+  const { fps, durationInFrames } = useVideoConfig();
   const currentFrame = useCurrentFrame();
-  const { durationInFrames, fps } = useVideoConfig();
   const isIncreasing = currentFrame < durationInFrames / 2;
-  const frame = interpolate(
-    currentFrame,
-    [0, durationInFrames * 0.25],
-    [0, durationInFrames * 0.25]
-  );
   const animationDurationInFrame = durationInFrames / 4;
+  const frame = interpolate(currentFrame, [0, fps * 4], [0, fps * 4]);
   const animationConfig: Partial<SpringConfig> = {
     stiffness: 50,
     damping: 100,
@@ -31,7 +28,7 @@ export const InnerCircle = () => {
     config: animationConfig,
   });
   const reverseDriver = spring({
-    frame: frame - durationInFrames / 2,
+    frame: frame - fps * 8,
     fps,
     from: styles.scale.circle.large,
     to: styles.scale.circle.small,

@@ -32,7 +32,7 @@ export default () => {
   return (
     <Loop durationInFrames={fps * 4}>
       <Audio
-        src={staticFile("chime.mp3")}
+        src={staticFile("low-chime.mp3")}
         endAt={fps * 4}
         volume={(f) =>
           interpolate(f, [0, fps * 4], [0.5, 0], {

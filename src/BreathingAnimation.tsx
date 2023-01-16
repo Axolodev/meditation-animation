@@ -1,5 +1,5 @@
 import * as React from "react";
-import { AbsoluteFill, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Loop, useCurrentFrame } from "remotion";
 import constants from "./constants";
 import Heading from "./Heading";
 import InnerCircle from "./InnerCircle";
@@ -12,6 +12,7 @@ const container: React.CSSProperties = {
 };
 
 export const Scene: React.FC = () => {
+  const { fps } = constants;
   const currentFrame = useCurrentFrame();
   const backgroundColor =
     currentFrame > constants.durationInFrames / 2
@@ -26,9 +27,11 @@ export const Scene: React.FC = () => {
       }}
     >
       <Pulse />
-      <Heading />
       <OuterCircle />
-      <InnerCircle />
+      <Loop durationInFrames={fps * 16} layout="none">
+        <Heading />
+        <InnerCircle />
+      </Loop>
       {/* <Count /> */}
     </AbsoluteFill>
   );
