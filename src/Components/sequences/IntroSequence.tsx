@@ -4,7 +4,7 @@ import Heading from "../atoms/Heading";
 import styles from "../../styles";
 import SignalChime from "../molecules/SignalChime";
 
-const animationStartDelay = constants.fps * 2;
+const animationStartDelay = constants.fps * 1.5;
 const animationDuration = constants.fps * 5;
 const duration = animationDuration + animationStartDelay + constants.fps;
 

@@ -8,6 +8,10 @@ import {
   IntroSequence,
   introSequenceDuration,
 } from "../sequences/IntroSequence";
+import {
+  OutroSequence,
+  outroSequenceDuration,
+} from "../sequences/OutroSequence";
 
 const MeditationScene: React.FC = () => {
   return (
@@ -21,11 +25,17 @@ const MeditationScene: React.FC = () => {
       >
         <BreathingSequence />
       </Sequence>
+      <Sequence
+        durationInFrames={outroSequenceDuration}
+        from={introSequenceDuration + breathingSequenceDuration}
+      >
+        <OutroSequence />
+      </Sequence>
     </>
   );
 };
 
 const meditationSceneDuration =
-  breathingSequenceDuration + introSequenceDuration;
+  breathingSequenceDuration + introSequenceDuration + outroSequenceDuration;
 
 export { MeditationScene, meditationSceneDuration };
