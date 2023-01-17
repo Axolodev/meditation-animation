@@ -7,7 +7,7 @@ import {
 } from "remotion";
 
 import Circle from "./Circle";
-import styles from "./styles";
+import styles from "../../styles";
 
 export const InnerCircle = () => {
   const { fps, durationInFrames } = useVideoConfig();

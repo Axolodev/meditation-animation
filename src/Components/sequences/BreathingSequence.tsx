@@ -1,17 +1,17 @@
 import * as React from "react";
 import { AbsoluteFill, Loop, useCurrentFrame } from "remotion";
-import constants from "./constants";
-import Heading from "./Heading";
-import InnerCircle from "./InnerCircle";
-import OuterCircle from "./OuterCircle";
-import Pulse from "./Pulse";
-import styles from "./styles";
+import constants from "../../constants";
+import Heading from "../atoms/Heading";
+import InnerCircle from "../atoms/InnerCircle";
+import OuterCircle from "../atoms/OuterCircle";
+import Pulse from "../molecules/Pulse";
+import styles from "../../styles";
 
 const container: React.CSSProperties = {
   transition: "background-color 4s ease-in-out",
 };
 
-export const Scene: React.FC = () => {
+const Sequence: React.FC = () => {
   const { fps } = constants;
   const currentFrame = useCurrentFrame();
   const backgroundColor =
@@ -29,10 +29,16 @@ export const Scene: React.FC = () => {
       <Pulse />
       <OuterCircle />
       <Loop durationInFrames={fps * 16} layout="none">
-        <Heading />
         <InnerCircle />
+        <Heading
+          labels={["Inhale", "Hold", "Exhale", "Hold"]}
+          durationInFrames={fps * 16}
+        />
       </Loop>
-      {/* <Count /> */}
     </AbsoluteFill>
   );
 };
+
+const duration = constants.fps * 16 * constants.loops;
+
+export { Sequence as BreathingSequence, duration as breathingSequenceDuration };

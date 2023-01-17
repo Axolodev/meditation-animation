@@ -1,14 +1,17 @@
 import { Composition } from "remotion";
 import constants from "./constants";
-import { Scene } from "./BreathingAnimation";
+import {
+  MeditationScene,
+  meditationSceneDuration,
+} from "./Components/scenes/MeditationScene";
 
 export const RemotionRoot: React.FC = () => {
   return (
     <>
       <Composition
         id="Box-Breathing"
-        component={Scene}
-        durationInFrames={constants.durationInFrames * 10}
+        component={MeditationScene}
+        durationInFrames={meditationSceneDuration}
         fps={constants.fps}
         width={1920}
         height={1080}

@@ -1,5 +1,5 @@
 import Circle from "./Circle";
-import styles from "./styles";
+import styles from "../../styles";
 
 function OuterCircle() {
   return (

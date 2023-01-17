@@ -6,8 +6,9 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import Circle from "./Circle";
-import styles from "./styles";
+import Circle from "../atoms/Circle";
+import constants from "../../constants";
+import styles from "../../styles";
 
 function Pulse() {
   const currentFrame = useCurrentFrame();
@@ -30,7 +31,7 @@ function Pulse() {
 export default () => {
   const { fps } = useVideoConfig();
   return (
-    <Loop durationInFrames={fps * 4}>
+    <Loop durationInFrames={fps * constants.stepDurationSeconds}>
       <Audio
         src={staticFile("low-chime.mp3")}
         endAt={fps * 4}
